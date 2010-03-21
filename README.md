@@ -1,15 +1,15 @@
 KEYPER
 ======
 
-**keyper** is a simple (yet powerful) distributed key-value elastic storage
+**keyper** is a simple (yet powerful) distributed and elastic key-value storage
 
 Building and Installing
 -----------------------
 
 First you must install the following dependencies:
 
-* Kyoto Cabinet: http://1978th.net/kyotocabinet/
-* asio C++ library: http://think-async.com/Asio
+* [Kyoto Cabinet] [1]
+* [asio C++ library] [2]
 
 After that, to build:
 
@@ -41,3 +41,8 @@ Copyright and License
 > FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 > DEALINGS IN THE SOFTWARE.
+
+
+
+  [1]: http://1978th.net/kyotocabinet/   "Kyoto Cabinet"
+  [2]: http://think-async.com/Asio       "asio C++ library"
