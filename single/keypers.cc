@@ -4,7 +4,6 @@
 // (See file LICENSE_1_0.txt or http://boost.org/LICENSE_1_0.txt)
 
 #include "keypers.hh"
-#include <kchashdb.h>
 
 int main(int, char**)
 {

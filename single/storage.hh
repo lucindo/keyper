@@ -20,6 +20,6 @@ public:
     bool put(void * key, uint32_t keylen, void * value, uint64_t valuelen);
 
     void * get(void * key, uint32_t keylen);
-}:
+};
 
 #endif // STORAGE_HH

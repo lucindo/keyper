@@ -1,4 +1,4 @@
-CPPFLAGS = -Wall -ansi -pedantic-errors -I/usr/local/include 
+CPPFLAGS = -Wall -ansi -pedantic-errors -std=c++0x -I/usr/local/include 
 ifeq ($(DEB),0)
   CPPFLAGS += -O2
 else
