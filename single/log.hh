@@ -3,13 +3,9 @@
 // Distributed under the Boost Software License, Version 1.0.
 // (See file LICENSE_1_0.txt or http://boost.org/LICENSE_1_0.txt)
 
-#ifndef KEYPERS_HH
-#define KEYPERS_HH
+#ifndef LOG_HH
+#define LOG_HH
 
-// main program returning codes
+// log functions: TODO
 
-#define ERROR_PROCESSING_COMMAND_LINE 1
-#define ERROR_LOADING_CONFG_FILE      2
-
-#endif // KEYPERS_HH
-
+#endif // LOG_HH

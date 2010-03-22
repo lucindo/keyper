@@ -9,7 +9,7 @@ Building and Installing
 First you must install the following dependencies:
 
 * [Kyoto Cabinet] [1]
-* [asio C++ library] [2]
+* [Boost C++ library] [2]
 
 After that, to build:
 
@@ -45,4 +45,4 @@ Copyright and License
 
 
   [1]: http://1978th.net/kyotocabinet/   "Kyoto Cabinet"
-  [2]: http://think-async.com/Asio       "asio C++ library"
+  [2]: http://www.boost.org/             "Boost C++ library"
