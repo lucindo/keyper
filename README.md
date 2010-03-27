@@ -1,7 +1,7 @@
-KEYPER
+keyper
 ======
 
-**keyper** is a simple (yet powerful) distributed and elastic key-value storage
+**keyper** is a hardcore distributed and elastic key-value storage
 
 Building and Installing
 -----------------------
@@ -14,6 +14,34 @@ First you must install the following dependencies:
 After that, to build:
 
         make
+
+Features
+--------
+
+Supported types:
+
+* key-value (with key indexing)
+* counters
+* queues
+
+System features:
+
+* No single point of failure
+* Data distribution (sharding)
+* Data replication (copies)
+* No need to ever stop de system
+* No limits
+* Advanced system control and monitoring
+
+Future
+------
+
+Support for:
+
+* Map-reduce tasks
+* Data indexing
+* Security: Auth, SSL and cryptography
+* ?? Key expiration (LRU, etc)
 
 Copyright and License
 ---------------------
