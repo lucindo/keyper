@@ -4,6 +4,8 @@
 // (See file LICENSE_1_0.txt or http://boost.org/LICENSE_1_0.txt)
 
 #include "config.hh"
+#include "defaults.hh"
+
 #include <iostream>
 #include <boost/program_options.hpp>
 namespace po = boost::program_options;
@@ -12,11 +14,22 @@ namespace po = boost::program_options;
 namespace pt = boost::property_tree;
 
 Config::Config()
+    : host_(BIND_HOST), port_(BIND_PORT)
 {
 }
 
 Config::~Config()
 {
+}
+
+std::string Config::host() const
+{
+    return host_;
+}
+
+uint32_t Config::port() const
+{
+    return port_;
 }
 
 bool Config::load_config()
@@ -27,9 +40,9 @@ bool Config::load_config()
     {
 	pt::read_xml(this->config_file, tree);
 
-	//m_file = tree.get<std::string>("keyper.filename");
+	host_ = tree.get<std::string>("keyper.bind.host", BIND_HOST);
     
-	//m_level = tree.get("debug.level", 0);
+	port_ = tree.get("keyper.bind.port", BIND_PORT);
 
 	return true;
     }
@@ -60,8 +73,9 @@ bool Config::command_line(int argc, char **argv)
 	   return true;
        }
    }
-   catch (...) // we're returning false anyway
+   catch (std::exception& ex)
    {
+       std::cerr << "" << ex.what() << std::endl;
    }
     
    return false;

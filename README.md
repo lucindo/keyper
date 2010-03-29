@@ -72,5 +72,5 @@ Copyright and License
 
 
 
-  [1]: http://1978th.net/kyotocabinet/   "Kyoto Cabinet"
-  [2]: http://www.boost.org/             "Boost C++ library"
+  [1]: http://1978th.net/kyotocabinet/            "Kyoto Cabinet"
+  [2]: http://www.boost.org/                      "Boost C++ library"

@@ -7,11 +7,14 @@
 #define CONFIG_HH
 
 #include <string>
+#include <cstdint>
 
 class Config
 {
 private:
     std::string config_file;
+    std::string host_;
+    uint32_t port_;
     
 public:
     Config();
@@ -22,6 +25,11 @@ public:
     bool load_config();
     
     void usage(const char * prog_name) const;
+
+    // getters
+
+    std::string host() const;
+    uint32_t port() const;
 };
 
 #endif // CONFIG_HH

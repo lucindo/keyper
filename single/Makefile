@@ -1,4 +1,4 @@
-CPPFLAGS = -Wall -ansi -pedantic-errors -std=c++0x -I/usr/local/include 
+CPPFLAGS = -Wall -Wno-write-strings -ansi -pedantic-errors -std=c++0x -I/usr/local/include 
 ifeq ($(DEB),0)
   CPPFLAGS += -Wno-inline -ftemplate-depth-128 -finline-functions -O3 -pthread
 else

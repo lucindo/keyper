@@ -5,6 +5,7 @@
 
 #include "keypers.hh"
 #include "config.hh"
+#include "log.hh"
 
 int main(int argc, char** argv)
 {
@@ -20,6 +21,8 @@ int main(int argc, char** argv)
     {
 	return ERROR_LOADING_CONFG_FILE;
     }
+
+    l(log::info, "will bing at: %s:%d", config.host().c_str(), config.port());
     
     return 0;
 }

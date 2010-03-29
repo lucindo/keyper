@@ -1,0 +1,10 @@
+<keyper>
+  <bind>
+    <host>127.0.0.1</host>
+    <port>4242</port>
+  </bind>
+  <log>
+    <level>DEBUG</level>
+    <file>keypers.log</file>
+  </log>
+</keyper>
