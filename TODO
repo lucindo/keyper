@@ -18,7 +18,7 @@
    * size(name): return the number of itens queued
    * delete(name): removes a queue from system
    * create(name): creates a queue
-
+   * [?] publish/subscribe protocol? http://en.wikipedia.org/wiki/Publish/subscribe
 
 * conter protocol
    * get(name): return the counter value
