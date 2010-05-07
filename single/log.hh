@@ -12,43 +12,43 @@ namespace log
 {
     enum log_level
     {
-	debug = 1,
-	info,
-	notice,
-	error,
-	warning,
-	critial
+		debug = 1,
+		info,
+		notice,
+		error,
+		warning,
+		critial
     };
     
     class Logger
     {
     private:
-	// Singleton
-	static Logger instance_;
-	Logger() :
-	    level_(DEFAULT_LOG_LEVEL)
-	{
-	}
-	~Logger() {} 
-	Logger(const Logger &);
-	Logger & operator=(const Logger &);
+		// Singleton
+		static Logger instance_;
+		Logger() :
+			level_(DEFAULT_LOG_LEVEL)
+		{
+		}
+		~Logger() {} 
+		Logger(const Logger &);
+		Logger & operator=(const Logger &);
 
-	// private functions
-	const char * name_of(log_level level);
+		// private functions
+		const char * name_of(log_level level);
 	
-	// members
-	log_level level_;
+		// members
+		log_level level_;
 	
     public:
-	static Logger &instance();
+		static Logger &instance();
 
-	void level(log_level level);
-	log_level level() const;
+		void level(log_level level);
+		log_level level() const;
 
-	void log(const char * str);
+		void log(const char * str);
     };
 }
 
-void l(log::log_level level, char * fmt, ...);
+void l(log::log_level level, const char * fmt, ...);
 
 #endif // LOG_HH

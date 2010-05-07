@@ -13,13 +13,13 @@ int main(int argc, char** argv)
     
     if (not config.command_line(argc, argv))
     {
-	config.usage(argv[0]);
-	return ERROR_PROCESSING_COMMAND_LINE;
+		config.usage(argv[0]);
+		return ERROR_PROCESSING_COMMAND_LINE;
     }
 
     if (not config.load_config())
     {
-	return ERROR_LOADING_CONFG_FILE;
+		return ERROR_LOADING_CONFG_FILE;
     }
 
     l(log::info, "will bing at: %s:%d", config.host().c_str(), config.port());
