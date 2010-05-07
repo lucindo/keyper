@@ -37,18 +37,18 @@ bool Config::load_config()
     pt::ptree tree;
     
     try
-    {
-	pt::read_xml(this->config_file, tree);
-
-	host_ = tree.get<std::string>("keyper.bind.host", BIND_HOST);
-    
-	port_ = tree.get("keyper.bind.port", BIND_PORT);
-
-	return true;
+	{
+		pt::read_xml(this->config_file, tree);
+		
+		host_ = tree.get<std::string>("keyper.bind.host", BIND_HOST);
+		
+		port_ = tree.get("keyper.bind.port", BIND_PORT);
+		
+		return true;
     }
     catch(std::exception& ex)
     {
-	std::cerr << "error reading file " << ex.what() << std::endl;
+		std::cerr << "error reading file " << ex.what() << std::endl;
     }
 
     return false;
@@ -56,29 +56,29 @@ bool Config::load_config()
 
 bool Config::command_line(int argc, char **argv)
 {
-   po::options_description desc("allowed options");
-   desc.add_options()
-       ("config", po::value<std::string>(), "configuration file")
-       ;
-
-   try
-   {
-       po::variables_map vm;
-       po::store(po::parse_command_line(argc, argv, desc), vm);
-       po::notify(vm);
-
-       if (vm.count("config"))
-       {
-	   this->config_file = vm["config"].as<std::string>();
-	   return true;
-       }
-   }
-   catch (std::exception& ex)
-   {
-       std::cerr << "" << ex.what() << std::endl;
-   }
+	po::options_description desc("allowed options");
+	desc.add_options()
+		("config", po::value<std::string>(), "configuration file")
+		;
+	
+	try
+	{
+		po::variables_map vm;
+		po::store(po::parse_command_line(argc, argv, desc), vm);
+		po::notify(vm);
+		
+		if (vm.count("config"))
+		{
+			this->config_file = vm["config"].as<std::string>();
+			return true;
+		}
+	}
+	catch (std::exception& ex)
+	{
+		std::cerr << "" << ex.what() << std::endl;
+	}
     
-   return false;
+	return false;
 }
 
 void Config::usage(const char * prog_name) const

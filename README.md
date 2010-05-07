@@ -10,6 +10,8 @@ First you must install the following dependencies:
 
 * [Kyoto Cabinet] [1]
 * [Boost C++ library] [2]
+* [Xapian Search Engine Library] [3]
+* [CMake cross-platform build system] [4]
 
 After that, to build:
 
@@ -20,7 +22,7 @@ Features
 
 Supported types:
 
-* key-value (with key indexing)
+* key-value (with indexing)
 * counters
 * queues
 
@@ -30,7 +32,7 @@ System features:
 * Data distribution (sharding)
 * Data replication (copies)
 * No need to ever stop de system
-* No limits
+* No limits (virtually)
 * Advanced system control and monitoring
 
 Future
@@ -74,3 +76,5 @@ Copyright and License
 
   [1]: http://1978th.net/kyotocabinet/            "Kyoto Cabinet"
   [2]: http://www.boost.org/                      "Boost C++ library"
+  [3]: http://xapian.org/                         "Xapian"
+  [4]: http://www.cmake.org/					  "CMake"

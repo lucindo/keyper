@@ -7,7 +7,7 @@
 #define CONFIG_HH
 
 #include <string>
-#include <cstdint>
+#include <stdint.h> // avoiding <cstdint>
 
 class Config
 {

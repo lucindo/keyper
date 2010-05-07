@@ -7,7 +7,7 @@
 #define STORAGE_HH
 
 #include <string>
-#include <cstdint>
+#include <stdint.h>
 
 class KVStore
 {

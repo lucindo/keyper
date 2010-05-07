@@ -6,6 +6,7 @@
 #include "log.hh"
 #include <cstdarg>
 #include <ctime>
+#include <cstdio>
 
 #include <iostream>
 
