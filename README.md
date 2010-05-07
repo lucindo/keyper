@@ -13,9 +13,9 @@ First you must install the following dependencies:
 * [Xapian Search Engine Library] [3]
 * [CMake cross-platform build system] [4]
 
-After that, to build:
+After that, to build the single server (keypers):
 
-        make
+        cd single && cmake . && make
 
 Features
 --------
