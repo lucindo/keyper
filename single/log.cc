@@ -7,10 +7,13 @@
 #include <cstdarg>
 #include <ctime>
 #include <cstdio>
+#include <cstring>
 
 #include <iostream>
 
-namespace log
+#include "defaults.hh"
+
+namespace lg
 {
     Logger Logger::instance_;
 	
@@ -19,7 +22,7 @@ namespace log
 		return instance_;
     }
 	
-    const char * Logger::name_of(log_level level)
+    const char * Logger::name_of(log_level level) const
     {
 		switch (level)
 		{
@@ -33,6 +36,22 @@ namespace log
 		}
 		return "unknown";
     }
+
+	log_level Logger::level_of(const char * name) const
+	{
+		if (strcasecmp("debug", name) == 0) return debug;
+		else if (strcasecmp("info", name) == 0) return info;
+		else if (strcasecmp("notice", name) == 0) return notice;
+		else if (strcasecmp("error", name) == 0) return error;
+		else if (strcasecmp("warning", name) == 0) return warning;
+		else if (strcasecmp("critial", name) == 0) return critial;
+		return DEFAULT_LOG_LEVEL;
+	}
+
+	void Logger::level(const char *name)
+	{
+		this->level(level_of(name));
+	}
 
     void Logger::level(log_level level)
     {
@@ -58,9 +77,9 @@ namespace log
     }
 }
 
-void l(log::log_level level, const char * fmt, ...)
+void l(lg::log_level level, const char * fmt, ...)
 {
-    if (level >= log::Logger::instance().level())
+    if (level >= lg::Logger::instance().level())
     {
 		const int size = 1024;
 		char buffer[size] = { 0, };
@@ -70,6 +89,6 @@ void l(log::log_level level, const char * fmt, ...)
 		vsnprintf(buffer, size, fmt, ap);
 		va_end(ap);
 		
-		log::Logger::instance().log(buffer);
+		lg::Logger::instance().log(buffer);
     }
 }

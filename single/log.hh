@@ -8,7 +8,7 @@
 
 #include "defaults.hh"
 
-namespace log
+namespace lg
 {
     enum log_level
     {
@@ -34,14 +34,16 @@ namespace log
 		Logger & operator=(const Logger &);
 
 		// private functions
-		const char * name_of(log_level level);
-	
+		const char * name_of(log_level level) const;
+		log_level level_of(const char * name) const;
+
 		// members
 		log_level level_;
 	
     public:
 		static Logger &instance();
 
+		void level(const char *name);
 		void level(log_level level);
 		log_level level() const;
 
@@ -49,6 +51,6 @@ namespace log
     };
 }
 
-void l(log::log_level level, const char * fmt, ...);
+void l(lg::log_level level, const char * fmt, ...);
 
 #endif // LOG_HH

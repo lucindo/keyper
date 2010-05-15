@@ -7,7 +7,8 @@
 #define DEFAULTS_HH
 
 #define BIND_HOST "localhost"
-#define BIND_PORT 4242
+#define BIND_PORT "4242"      // can be a port-name
+#define THREAD_POOL_SIZE 10
 
 #define DEFAULT_LOG_LEVEL info
 

@@ -5,6 +5,7 @@
 
 #include "config.hh"
 #include "defaults.hh"
+#include "log.hh"
 
 #include <iostream>
 #include <boost/program_options.hpp>
@@ -14,7 +15,7 @@ namespace po = boost::program_options;
 namespace pt = boost::property_tree;
 
 Config::Config()
-    : host_(BIND_HOST), port_(BIND_PORT)
+    : host_(BIND_HOST), port_(BIND_PORT), thread_pool_size_(THREAD_POOL_SIZE)
 {
 }
 
@@ -27,9 +28,14 @@ std::string Config::host() const
     return host_;
 }
 
-uint32_t Config::port() const
+std::string Config::port() const
 {
     return port_;
+}
+
+uint32_t Config::thread_pool_size() const
+{
+	return thread_pool_size_;
 }
 
 bool Config::load_config()
@@ -42,8 +48,18 @@ bool Config::load_config()
 		
 		host_ = tree.get<std::string>("keyper.bind.host", BIND_HOST);
 		
-		port_ = tree.get("keyper.bind.port", BIND_PORT);
+		port_ = tree.get<std::string>("keyper.bind.port", BIND_PORT);
 		
+		thread_pool_size_ = tree.get("keyper.thread-pool.size", THREAD_POOL_SIZE);
+
+		try
+		{
+			std::string log_level = tree.get<std::string>("keyper.log.level");
+
+			lg::Logger::instance().level(log_level.c_str());
+		}
+		catch(...) {} // it's ok, default already setted
+
 		return true;
     }
     catch(std::exception& ex)
