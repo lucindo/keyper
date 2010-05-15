@@ -3,6 +3,12 @@ keyper
 
 **keyper** is a hardcore distributed and elastic key-value storage
 
+Warning
+-------
+
+While this warning is here beware of very alpha piece of software.
+
+
 Building and Installing
 -----------------------
 
@@ -41,9 +47,8 @@ Future
 Support for:
 
 * Map-reduce tasks
-* Data indexing
 * Security: Auth, SSL and cryptography
-* ?? Key expiration (LRU, etc)
+* Key expiration (LRU, etc)
 
 Copyright and License
 ---------------------
