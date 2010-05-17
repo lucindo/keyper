@@ -37,7 +37,7 @@ System features:
 * No single point of failure
 * Data distribution (sharding)
 * Data replication (copies)
-* No need to ever stop de system
+* No need to ever stop the system
 * No limits (virtually)
 * Advanced system control and monitoring
 
@@ -82,4 +82,4 @@ Copyright and License
   [1]: http://1978th.net/kyotocabinet/            "Kyoto Cabinet"
   [2]: http://www.boost.org/                      "Boost C++ library"
   [3]: http://xapian.org/                         "Xapian"
-  [4]: http://www.cmake.org/					  "CMake"
+  [4]: http://www.cmake.org/			  "CMake"
