@@ -15,13 +15,17 @@ Building and Installing
 First you must install the following dependencies:
 
 * [Kyoto Cabinet] [1]
-* [Boost C++ library] [2]
+* [Apache Thrift] [2]
 * [Xapian Search Engine Library] [3]
 * [CMake cross-platform build system] [4]
 
 After that, to build the single server (keypers):
 
-        cd single && cmake . && make
+        cd thrift
+        thrift -r --gen cpp keyper.thrift
+        thrift -r --gen py keyper.thrift
+        cd ../single
+        cmake . && make
 
 Features
 --------
@@ -80,6 +84,6 @@ Copyright and License
 
 
   [1]: http://1978th.net/kyotocabinet/            "Kyoto Cabinet"
-  [2]: http://www.boost.org/                      "Boost C++ library"
+  [2]: http://incubator.apache.org/thrift/        "Apache Thrift"
   [3]: http://xapian.org/                         "Xapian"
-  [4]: http://www.cmake.org/			  "CMake"
+  [4]: http://www.cmake.org/                      "CMake"

@@ -17,10 +17,12 @@ add_executable(keypers
   storage.hh
 )
 
+include_directories(
+  ../thrift/gen-cpp
+)
+
 target_link_libraries(keypers
   pthread
-  boost_thread
-  boost_system
-  boost_program_options
+  thrift
   xapian
 )
