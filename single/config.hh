@@ -14,7 +14,7 @@ class Config
 private:
     std::string config_file;
     std::string host_;
-	std::string port_;
+	uint32_t port_;
 	uint32_t thread_pool_size_;
 
 public:
@@ -30,7 +30,7 @@ public:
     // getters
 
     std::string host() const;
-	std::string port() const;
+	uint32_t port() const;
 	uint32_t thread_pool_size() const;
 };
 

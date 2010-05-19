@@ -28,7 +28,7 @@ std::string Config::host() const
     return host_;
 }
 
-std::string Config::port() const
+uint32_t Config::port() const
 {
     return port_;
 }
@@ -48,7 +48,7 @@ bool Config::load_config()
 		
 		host_ = tree.get<std::string>("keyper.bind.host", BIND_HOST);
 		
-		port_ = tree.get<std::string>("keyper.bind.port", BIND_PORT);
+		port_ = tree.get("keyper.bind.port", BIND_PORT);
 		
 		thread_pool_size_ = tree.get("keyper.thread-pool.size", THREAD_POOL_SIZE);
 

@@ -6,6 +6,24 @@
 #include "keypers.hh"
 #include "config.hh"
 #include "log.hh"
+#include "handler.hh"
+
+#include <concurrency/ThreadManager.h>
+#include <concurrency/PosixThreadFactory.h>
+#include <protocol/TBinaryProtocol.h>
+#include <server/TSimpleServer.h>
+#include <server/TThreadPoolServer.h>
+#include <server/TThreadedServer.h>
+#include <transport/TServerSocket.h>
+#include <transport/TTransportUtils.h>
+
+using namespace apache::thrift;
+using namespace apache::thrift::protocol;
+using namespace apache::thrift::transport;
+using namespace apache::thrift::server;
+using namespace apache::thrift::concurrency;
+using namespace boost;
+using namespace keyper;
 
 int main(int argc, char** argv) try
 {
@@ -22,7 +40,30 @@ int main(int argc, char** argv) try
 		return ERROR_LOADING_CONFG_FILE;
     }
 
-    l(lg::info, "will bing at: %s:%s [%d threads]", config.host().c_str(), config.port().c_str(), config.thread_pool_size());
+    l(lg::info, "will bing at: %s:%d [%d threads]", config.host().c_str(), config.port(), config.thread_pool_size());
+
+	shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
+	shared_ptr<KeyperHandler> handler(new KeyperHandler());
+	shared_ptr<TProcessor> processor(new KeyperProcessor(handler));
+	shared_ptr<TServerTransport> serverTransport(new TServerSocket(config.port()));
+	shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
+
+	shared_ptr<ThreadManager> threadManager = ThreadManager::newSimpleThreadManager(config.thread_pool_size());
+	shared_ptr<PosixThreadFactory> threadFactory = shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
+	threadManager->threadFactory(threadFactory);
+	threadManager->start();
+
+	TThreadPoolServer server(processor,
+							 serverTransport,
+							 transportFactory,
+							 protocolFactory,
+							 threadManager);
+
+	l(lg::info, "starting the server");
+
+	server.serve();
+
+	l(lg::info, "exiting");
 
     return 0;
 }

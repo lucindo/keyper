@@ -7,9 +7,12 @@
 #define DEFAULTS_HH
 
 #define BIND_HOST "localhost"
-#define BIND_PORT "4242"      // can be a port-name
+#define BIND_PORT 4242
 #define THREAD_POOL_SIZE 10
 
 #define DEFAULT_LOG_LEVEL info
+
+// from ACE:
+#define UNUSED_ARG(a) do {/* null */} while (&a == 0)
 
 #endif // DEFAULTS_HH
