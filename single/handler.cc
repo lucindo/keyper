@@ -24,6 +24,13 @@ namespace keyper
 
 
     // keyper
+
+	void KeyperHandler::keyspace(const std::string& name, const bool index)
+	{
+		UNUSED_ARG(name);
+		UNUSED_ARG(index);
+	}
+
     void KeyperHandler::put(const std::string& key, const std::string& data)
     {
         UNUSED_ARG(key);

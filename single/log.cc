@@ -65,13 +65,12 @@ namespace lg
 
     void Logger::log(const char * str)
     {
-		const int size = 256;
+		const int size = 26;
 		char buffer[size] = { 0, };
 		time_t now = time(NULL);
-		struct tm * tnow;
 
-		tnow = localtime(&now);
-		strftime(buffer, size, "%Y-%m-%d %H:%M:%S", tnow);
+		ctime_r(&now, buffer);
+		buffer[24] = '\0';
 	
 		std::cout << name_of(level_) << " | " << buffer << " | "<< str << std::endl;
     }

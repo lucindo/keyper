@@ -22,6 +22,7 @@ namespace keyper
 
 
         // keyper
+		void keyspace(const std::string& name, const bool index);
         void put(const std::string& key, const std::string& data);
         void get(std::string& _return, const std::string& key);
         void getput(std::string& _return, const std::string& key, const std::string& data);

@@ -22,6 +22,10 @@ First you must install the following dependencies:
 
 After that, to build the single server (keypers):
 
+        make
+
+Or (for now)
+
         cd thrift
         thrift -r --gen cpp keyper.thrift
         thrift -r --gen py keyper.thrift
