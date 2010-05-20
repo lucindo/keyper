@@ -1,7 +1,7 @@
 keyper
 ======
 
-**keyper** is a hardcore distributed and elastic key-value storage
+**keyper** is a simple key-value storage, result of my NIH syndrome.
 
 Warning
 -------
@@ -41,7 +41,15 @@ Supported types:
 * counters
 * queues
 
-System features:
+Future
+------
+
+Support for:
+
+* Security: Auth, SSL and cryptography
+* Key expiration (LRU, etc)
+
+Implement as a distributed system with the following features:
 
 * No single point of failure
 * Data distribution (sharding)
@@ -49,15 +57,7 @@ System features:
 * No need to ever stop the system
 * No limits (virtually)
 * Advanced system control and monitoring
-
-Future
-------
-
-Support for:
-
 * Map-reduce tasks
-* Security: Auth, SSL and cryptography
-* Key expiration (LRU, etc)
 
 Copyright and License
 ---------------------
