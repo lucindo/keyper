@@ -4,6 +4,7 @@
    * implement queues
    * implement async indexing
    * implement support for stemmers (on keyspaces)
+   * implement memory-only store (to be used as a cache)
    * use void* to store counters
 
 * protocol

@@ -32,8 +32,9 @@ Or these steps:
 		make
 * build clients stubs, thrift directory:
         thrift -r --gen py keyper.thrift # python
+        thrift -r --gen rb keyper.thrift # ruby
 
-Small python example: [cly.py] [5]
+Small python example (client directory): [cly.py] [5]
 
 Features
 --------
@@ -49,7 +50,7 @@ Future
 
 Support for:
 
-* Security: Auth, SSL and cryptography
+* Security: Auth, cryptography
 * Key expiration (LRU, etc)
 
 Implement as a distributed system with the following features:
