@@ -11,7 +11,7 @@
 #define DEFAULT_THREAD_POOL_SIZE 10
 #define DEFAULT_LOG_LEVEL info
 #define DEFAULT_LOG_LEVEL_STR "info"
-#define DEFAULT_DATA_DIR "/tmp"
+#define DEFAULT_DATA_DIR "/tmp/"
 
 #define KEYPER_VERSION "0.0.1"
 

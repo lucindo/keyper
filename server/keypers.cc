@@ -3,10 +3,13 @@
 // Distributed under the Boost Software License, Version 1.0.
 // (See file LICENSE_1_0.txt or http://boost.org/LICENSE_1_0.txt)
 
+#include <kchashdb.h>
+
 #include "keypers.hh"
 #include "config.hh"
 #include "log.hh"
 #include "handler.hh"
+#include "storage.hh"
 
 #include <concurrency/ThreadManager.h>
 #include <concurrency/PosixThreadFactory.h>
@@ -35,7 +38,13 @@ int main(int argc, char** argv) try
 		return ERROR_PROCESSING_COMMAND_LINE;
     }
 
-    l(lg::debug, "will bing at: %s:%d [%d threads]", config.host().c_str(), config.port(), config.thread_pool_size());
+    l(lg::debug, "will bing at: %s:%d [%d threads] [data dir %s]", config.host().c_str(), config.port(), config.thread_pool_size(), config.data_dir().c_str());
+
+	if (not KVStore::instance().init(config.data_dir()))
+	{
+		l(lg::critical, "error opening database, aborting.");
+		return ERROR_OPENNING_DATABASE;
+	}
 
 	shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
 	shared_ptr<KeyperHandler> handler(new KeyperHandler());
@@ -57,6 +66,8 @@ int main(int argc, char** argv) try
 	l(lg::info, "starting the server");
 
 	server.serve();
+
+	KVStore::instance().fini();
 
 	l(lg::info, "exiting");
 

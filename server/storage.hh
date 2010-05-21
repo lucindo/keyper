@@ -6,20 +6,37 @@
 #ifndef STORAGE_HH
 #define STORAGE_HH
 
+#include <kchashdb.h>
 #include <string>
-#include <stdint.h>
+
+using namespace kyotocabinet;
 
 class KVStore
 {
 private:
-    std::string home_dir_;
+	static KVStore instance_;
+	KVStore()
+	{
+	}
+	~KVStore()
+	{
+	}
+
+	KVStore(const KVStore&);
+	KVStore & operator=(const KVStore&);
+
+	HashDB db_;
 
 public:
-    KVStore(std::string home_dir);
+	static KVStore &instance();
     
-    bool put(void * key, uint32_t keylen, void * value, uint64_t valuelen);
 
-    void * get(void * key, uint32_t keylen);
+	bool init(std::string data_dir);
+	void fini();
+
+    void put(const std::string& key, const std::string& data);
+
+    void get(const std::string& key, std::string& data);
 };
 
 #endif // STORAGE_HH

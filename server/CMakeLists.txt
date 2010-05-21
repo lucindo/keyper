@@ -33,4 +33,11 @@ include_directories(
 target_link_libraries(keypers
   thrift
   xapian
+  kyotocabinet
+  z
+  stdc++
+  rt
+  pthread
+  m
+  c
 )

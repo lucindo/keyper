@@ -35,6 +35,13 @@ def main():
 
         print "server version: %s " % klient.version()
 
+        print "get(key) = %s " % klient.get("key")
+
+        klient.put("key", "value")
+        print "put()"
+
+        print "get(key) = %s " % klient.get("key")
+
     except Exception, ex:
         print '%s' % str(ex)
 

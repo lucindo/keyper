@@ -3,6 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // (See file LICENSE_1_0.txt or http://boost.org/LICENSE_1_0.txt)
 
+#include "storage.hh"
 #include "handler.hh"
 #include "defaults.hh"
 #include "log.hh"
@@ -32,14 +33,14 @@ namespace keyper
 
     void KeyperHandler::put(const std::string& key, const std::string& data)
     {
-        UNUSED_ARG(key);
-        UNUSED_ARG(data);
+		l(lg::debug, "put called with key %s and %d bytes of value", key.c_str(), data.size());
+		KVStore::instance().put(key, data);
     }
 
     void KeyperHandler::get(std::string& _return, const std::string& key)
     {
-        UNUSED_ARG(_return);
-        UNUSED_ARG(key);
+		l(lg::debug, "get called for key %s", key.c_str());
+		KVStore::instance().get(key, _return);
     }
 
     void KeyperHandler::getput(std::string& _return, const std::string& key, const std::string& data)
