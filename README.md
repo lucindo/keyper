@@ -27,7 +27,7 @@ Or these steps:
 
 * generate C++ code from thrift IDL (on thrift directory):
         thrift -r --gen cpp keyper.thrift
-* build keypers (s stands for single/server, distributed version to come), server directory:
+* build keypers ("s" stands for single/server, distributed version to come), on server directory:
         cmake .
 		make
 * build clients stubs, thrift directory:
