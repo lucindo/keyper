@@ -5,14 +5,12 @@ namespace cpp keyper
 
 struct item
 {
-    1:string key,
+	1:string key,
 	2:binary value
 }
 
 service Keyper extends server.Server
 {
-    void keyspace(1:string name, 2:bool index),
-
 	void put(1:string key, 2:binary data),
 	
 	binary get(1:string key),
