@@ -22,6 +22,21 @@ namespace lg
 		return instance_;
     }
 	
+    const char * Logger::print_name_of(log_level level) const
+    {
+		switch (level)
+		{
+			case debug:   return "dbg";
+			case info:    return "inf";
+			case notice:  return "not";
+			case error:   return "err";
+			case warning: return "war";
+			case critial: return "cri";
+			default: break;
+		}
+		return "unknown";
+    }
+
     const char * Logger::name_of(log_level level) const
     {
 		switch (level)
@@ -63,7 +78,7 @@ namespace lg
 		return this->level_;
     }
 
-    void Logger::log(const char * str)
+    void Logger::log(log_level level, const char * str)
     {
 		const int size = 26;
 		char buffer[size] = { 0, };
@@ -72,7 +87,7 @@ namespace lg
 		ctime_r(&now, buffer);
 		buffer[24] = '\0';
 	
-		std::cout << name_of(level_) << " | " << buffer << " | "<< str << std::endl;
+		std::cout << print_name_of(level) << " | " << buffer << " | "<< str << std::endl;
     }
 }
 
@@ -88,6 +103,6 @@ void l(lg::log_level level, const char * fmt, ...)
 		vsnprintf(buffer, size, fmt, ap);
 		va_end(ap);
 		
-		lg::Logger::instance().log(buffer);
+		lg::Logger::instance().log(level, buffer);
     }
 }

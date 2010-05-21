@@ -34,6 +34,7 @@ namespace lg
 		Logger & operator=(const Logger &);
 
 		// private functions
+		const char * print_name_of(log_level level) const;
 		const char * name_of(log_level level) const;
 		log_level level_of(const char * name) const;
 
@@ -47,7 +48,7 @@ namespace lg
 		void level(log_level level);
 		log_level level() const;
 
-		void log(const char * str);
+		void log(log_level level, const char * str);
     };
 }
 
