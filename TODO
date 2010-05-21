@@ -2,6 +2,7 @@
 * general
    * use references to avoid copies
    * implement queues
+   * use void* to store counters
 
 * protocol
    * add exceptions

@@ -68,6 +68,25 @@ def main():
 
         print "get(xuxu) = %s " % klient.get("xuxu")
 
+        print "counter exists? %s" % klient.cexists("counter")
+
+        klient.cincr("counter", 1)
+        print "cincr(counter, 1)"
+
+        print "counter exists? %s" % klient.cexists("counter")
+
+        print "counter %d" % klient.cget("counter")
+
+        klient.cdecr("counter", 1)
+        print "cdecr(counter, 1)"
+
+        print "counter %d" % klient.cget("counter")
+
+        klient.cremove("counter")
+        print "cremove(counter)"
+
+        print "counter exists? %s" % klient.cexists("counter")
+
     except Exception, ex:
         print '%s' % str(ex)
 

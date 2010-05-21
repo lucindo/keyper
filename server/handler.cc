@@ -9,8 +9,6 @@
 #include "defaults.hh"
 #include "log.hh"
 
-#include <unistd.h>
-
 namespace keyper
 {
     KeyperHandler::KeyperHandler()
@@ -22,7 +20,6 @@ namespace keyper
     void KeyperHandler::ping()
     {
 		l(lg::debug, "ping called");
-		sleep(10);
     }
 
     void KeyperHandler::version(std::string& _return)
@@ -159,27 +156,36 @@ namespace keyper
     // counter
     int64_t KeyperHandler::cincr(const std::string& name, const int64_t delta)
 	{
-		l(lg::debug, "incr called counter %s delta %d", name.c_str(), delta);
+		l(lg::debug, "cincr called counter %s delta %d", name.c_str(), delta);
+
 		return Counter::instance().update(name, delta);
 	}
 
     int64_t KeyperHandler::cget(const std::string& name)
 	{
+		l(lg::debug, "cget called counter %s", name.c_str());
+
 		return Counter::instance().get(name);
 	}
 
     int64_t KeyperHandler::cdecr(const std::string& name, const int64_t delta)
 	{
+		l(lg::debug, "cdecr called counter %s delta %d", name.c_str(), -delta);
+
 		return Counter::instance().update(name, -delta);
 	}
 
     bool KeyperHandler::cexists(const std::string& name)
 	{
+		l(lg::debug, "cexists called counter %s", name.c_str());
+
 		return Counter::instance().exists(name);		
 	}
 
     void KeyperHandler::cremove(const std::string& name)
 	{
+		l(lg::debug, "cremove called counter %s", name.c_str());
+
 		Counter::instance().remove(name);		
 	}
 }
