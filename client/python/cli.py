@@ -1,15 +1,7 @@
 #!/usr/bin/env python
 
 import sys, getopt
-sys.path.append("../../thrift/gen-py")
-
-from keyper import Keyper
-from keyper.ttypes import *
-
-from thrift import Thrift
-from thrift.transport import TSocket
-from thrift.transport import TTransport
-from thrift.protocol import TBinaryProtocol
+import keyperclient
 
 def parse_options(args):
     usage_string = "usage: %s -i <host> -p <port>" % args[0]
@@ -34,21 +26,17 @@ def main():
     (ip, port) = parse_options(sys.argv)
 
     try:
-        transport = TSocket.TSocket(ip, port)
-        transport = TTransport.TBufferedTransport(transport)
-        protocol = TBinaryProtocol.TBinaryProtocol(transport)
-
-        client = Keyper.Client(protocol)
-
         print "connecting to %s:%d" % (ip, port)
-        transport.open()
 
-        client.ping()
+        klient = keyperclient.Client(ip, port)
+
+        klient.ping()
         print 'ping()'
 
-    except Thrift.TException, tx:
-        print '%s' % (tx.message)
+        print "server version: %s " % klient.version()
 
+    except Exception, ex:
+        print '%s' % str(ex)
 
 if __name__ == '__main__':
-    main()
+    main();
