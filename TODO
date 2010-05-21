@@ -2,6 +2,8 @@
 * general
    * use references to avoid copies
    * implement queues
+   * implement async indexing
+   * implement support for stemmers (on keyspaces)
    * use void* to store counters
 
 * protocol

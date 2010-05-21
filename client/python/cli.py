@@ -85,6 +85,16 @@ def main():
 
         print "counter exists? %s" % klient.cexists("counter")
 
+        klient.put("chavao", "The quick brown fox jumps over the lazy dog")
+
+        print "search(fox): %s" % klient.search("fox")
+
+        print "get(search(fox)[0]) = %s" % klient.get(klient.search("fox")[0]) 
+
+        print "keys(*): %s" % klient.keys("*")
+        
+        print "size(): %d" % klient.size()
+
     except Exception, ex:
         print '%s' % str(ex)
 

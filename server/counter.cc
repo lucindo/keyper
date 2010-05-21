@@ -32,7 +32,7 @@ Counter& Counter::instance()
 
 bool Counter::init(std::string data_dir)
 {
-	std::string db_name = data_dir + "counter.kch";
+	std::string db_name = data_dir + "kp_counter.kch";
 
 	l(lg::debug, "opening hash db [%s]", db_name.c_str());
 

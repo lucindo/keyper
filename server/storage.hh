@@ -7,6 +7,7 @@
 #define STORAGE_HH
 
 #include <kchashdb.h>
+#include <xapian.h>
 #include <string>
 
 using namespace kyotocabinet;
@@ -15,7 +16,7 @@ class KVStore
 {
 private:
 	static KVStore instance_;
-	KVStore()
+	KVStore() : index_(NULL)
 	{
 	}
 	~KVStore()
@@ -26,6 +27,7 @@ private:
 	KVStore & operator=(const KVStore&);
 
 	HashDB db_;
+	Xapian::WritableDatabase * index_;
 
 public:
 	static KVStore &instance();
@@ -45,6 +47,10 @@ public:
 	void remove(const std::string& key);
 
 	void rename(const std::string& oldkey, const std::string& newkey);
+
+	void search(const std::string& pattern, std::vector<std::string>& result);
+
+	void keys(const std::string& pattern, std::vector<std::string>& result);
 };
 
 #endif // STORAGE_HH

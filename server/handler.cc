@@ -69,7 +69,7 @@ namespace keyper
 
     void KeyperHandler::mput(const std::vector<item> & items)
     {
-		l(lg::debug, "mget called witg %d items", items.size());
+		l(lg::debug, "mput called witg %d items", items.size());
 
         for (std::size_t item = 0; item < items.size(); item++)
 		{
@@ -107,14 +107,16 @@ namespace keyper
 
     void KeyperHandler::keys(std::vector<std::string> & _return, const std::string& pattern)
     {
-        UNUSED_ARG(_return);
-        UNUSED_ARG(pattern);
+		l(lg::debug, "keys called with pattern %s", pattern.c_str());
+
+		KVStore::instance().keys(pattern, _return);
     }
 
     void KeyperHandler::search(std::vector<std::string> & _return, const std::string& pattern)
     {
-        UNUSED_ARG(_return);
-        UNUSED_ARG(pattern);
+		l(lg::debug, "search called with pattern %s", pattern.c_str());
+
+		KVStore::instance().search(pattern, _return);
     }
 
 

@@ -29,6 +29,7 @@ add_executable(keypers
 
 include_directories(
   /usr/local/include/thrift
+  /usr/local/include/xapian
   ../thrift/gen-cpp
 )
 

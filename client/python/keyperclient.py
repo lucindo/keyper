@@ -11,6 +11,10 @@ from thrift.transport import TSocket
 from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
 
+class Item(item):
+    def __init__(self):
+        item.__init__(self)
+
 class Client(Keyper.Client):
     def __init__(self, ip, port):
         transport = TSocket.TSocket(ip, port)
