@@ -26,12 +26,12 @@ namespace lg
     {
 		switch (level)
 		{
-			case debug:   return "dbg";
-			case info:    return "inf";
-			case notice:  return "not";
-			case error:   return "err";
-			case warning: return "war";
-			case critial: return "cri";
+			case debug:    return "dbg";
+			case info:     return "inf";
+			case notice:   return "not";
+			case error:    return "err";
+			case warning:  return "war";
+			case critical: return "cri";
 			default: break;
 		}
 		return "unknown";
@@ -41,12 +41,12 @@ namespace lg
     {
 		switch (level)
 		{
-			case debug:   return "debug";
-			case info:    return "info";
-			case notice:  return "notice";
-			case error:   return "error";
-			case warning: return "warning";
-			case critial: return "critial";
+			case debug:    return "debug";
+			case info:     return "info";
+			case notice:   return "notice";
+			case error:    return "error";
+			case warning:  return "warning";
+			case critical: return "critical";
 			default: break;
 		}
 		return "unknown";
@@ -59,7 +59,7 @@ namespace lg
 		else if (strcasecmp("notice", name) == 0) return notice;
 		else if (strcasecmp("error", name) == 0) return error;
 		else if (strcasecmp("warning", name) == 0) return warning;
-		else if (strcasecmp("critial", name) == 0) return critial;
+		else if (strcasecmp("critical", name) == 0) return critical;
 		return DEFAULT_LOG_LEVEL;
 	}
 

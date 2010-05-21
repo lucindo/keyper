@@ -17,7 +17,7 @@ namespace lg
 		notice,
 		error,
 		warning,
-		critial
+		critical
     };
     
     class Logger
