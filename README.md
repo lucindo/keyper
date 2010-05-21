@@ -33,7 +33,7 @@ Or these steps:
 * build clients stubs, thrift directory:
         thrift -r --gen py keyper.thrift # python
 
-Small python example: [cly.py] [https://github.com/lucindo/keyper/blob/master/client/python/cli.py]
+Small python example: [cly.py] [5]
 
 Features
 --------
@@ -95,3 +95,4 @@ Copyright and License
   [2]: http://incubator.apache.org/thrift/        "Apache Thrift"
   [3]: http://xapian.org/                         "Xapian"
   [4]: http://www.cmake.org/                      "CMake"
+  [5]: http://github.com/lucindo/keyper/blob/master/client/python/cli.py "cli.py"
