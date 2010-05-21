@@ -6,6 +6,7 @@
 include "server.thrift"
 
 namespace cpp keyper
+namespace py keyper
 
 // A simple key-value item
 struct item

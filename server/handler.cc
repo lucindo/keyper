@@ -5,6 +5,7 @@
 
 #include "handler.hh"
 #include "defaults.hh"
+#include "log.hh"
 
 namespace keyper
 {
@@ -16,11 +17,14 @@ namespace keyper
 
     void KeyperHandler::ping()
     {
+		l(lg::debug, "ping called");
     }
 
     void KeyperHandler::version(std::string& _return)
     {
-        UNUSED_ARG(_return);
+		l(lg::debug, "version called");
+
+		_return = std::string(KEYPER_VERSION);
     }
 
 

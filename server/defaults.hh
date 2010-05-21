@@ -13,6 +13,8 @@
 #define DEFAULT_LOG_LEVEL_STR "info"
 #define DEFAULT_DATA_DIR "/tmp"
 
+#define KEYPER_VERSION "0.0.1"
+
 // from ACE:
 #define UNUSED_ARG(a) do {/* null */} while (&a == 0)
 
