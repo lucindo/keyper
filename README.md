@@ -1,7 +1,7 @@
 keyper
 ======
 
-**keyper** is a simple key-value storage, result of my NIH syndrome.
+**keyper** is a simple key-value store, result of my NIH syndrome.
 
 Warning
 -------
@@ -23,13 +23,15 @@ After that, to build the single server (keypers):
 
         make
 
-Or (for now)
+Or these steps:
 
-        cd thrift
+* generate C++ code from thrift IDL (on thrift directory):
         thrift -r --gen cpp keyper.thrift
-        thrift -r --gen py keyper.thrift
-        cd ../single
-        cmake . && make
+* build keypers (s stands for single/server, distributed version to come), server directory:
+        cmake .
+		make
+* build clients stubs, thrift directory:
+        thrift -r --gen py keyper.thrift # python
 
 Features
 --------
