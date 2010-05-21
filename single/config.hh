@@ -12,7 +12,6 @@
 class Config
 {
 private:
-    std::string config_file;
     std::string host_;
 	uint32_t port_;
 	uint32_t thread_pool_size_;
@@ -23,8 +22,6 @@ public:
 
     bool command_line(int argc, char **argv);
 
-    bool load_config();
-    
     void usage(const char * prog_name) const;
 
     // getters

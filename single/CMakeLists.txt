@@ -31,8 +31,6 @@ include_directories(
 )
 
 target_link_libraries(keypers
-  pthread
   thrift
-  boost_program_options
   xapian
 )

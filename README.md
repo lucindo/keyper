@@ -14,7 +14,6 @@ Building and Installing
 
 First you must install the following dependencies:
 
-* [Boost C++ Libraries] [0]
 * [Kyoto Cabinet] [1]
 * [Apache Thrift] [2]
 * [Xapian Search Engine Library] [3]
@@ -88,7 +87,6 @@ Copyright and License
 
 
 
-  [0]: http://boost.org/                          "Boost C++"
   [1]: http://1978th.net/kyotocabinet/            "Kyoto Cabinet"
   [2]: http://incubator.apache.org/thrift/        "Apache Thrift"
   [3]: http://xapian.org/                         "Xapian"

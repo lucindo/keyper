@@ -7,15 +7,13 @@
 #include "defaults.hh"
 #include "log.hh"
 
+#include <unistd.h> // for getopt
+
 #include <iostream>
-#include <boost/program_options.hpp>
-namespace po = boost::program_options;
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
-namespace pt = boost::property_tree;
+#include <cstdlib>
 
 Config::Config()
-    : host_(BIND_HOST), port_(BIND_PORT), thread_pool_size_(THREAD_POOL_SIZE)
+    : host_(DEFAULT_BIND_HOST), port_(DEFAULT_BIND_PORT), thread_pool_size_(DEFAULT_THREAD_POOL_SIZE)
 {
 }
 
@@ -35,69 +33,44 @@ uint32_t Config::port() const
 
 uint32_t Config::thread_pool_size() const
 {
-	return thread_pool_size_;
-}
-
-bool Config::load_config()
-{
-    pt::ptree tree;
-    
-    try
-	{
-		pt::read_xml(this->config_file, tree);
-		
-		host_ = tree.get<std::string>("keyper.bind.host", BIND_HOST);
-		
-		port_ = tree.get("keyper.bind.port", BIND_PORT);
-		
-		thread_pool_size_ = tree.get("keyper.thread-pool.size", THREAD_POOL_SIZE);
-
-		try
-		{
-			std::string log_level = tree.get<std::string>("keyper.log.level");
-
-			lg::Logger::instance().level(log_level.c_str());
-		}
-		catch(...) {} // it's ok, default already setted
-
-		return true;
-    }
-    catch(std::exception& ex)
-    {
-		std::cerr << "error reading file " << ex.what() << std::endl;
-    }
-
-    return false;
+    return thread_pool_size_;
 }
 
 bool Config::command_line(int argc, char **argv)
 {
-	po::options_description desc("allowed options");
-	desc.add_options()
-		("config", po::value<std::string>(), "configuration file")
-		;
-	
-	try
-	{
-		po::variables_map vm;
-		po::store(po::parse_command_line(argc, argv, desc), vm);
-		po::notify(vm);
-		
-		if (vm.count("config"))
+    int opt;
+
+    while ((opt = getopt(argc, argv, "h:p:t:l:")) != -1)
+    {
+        switch (opt) 
 		{
-			this->config_file = vm["config"].as<std::string>();
-			return true;
-		}
-	}
-	catch (std::exception& ex)
-	{
-		std::cerr << "" << ex.what() << std::endl;
-	}
-    
-	return false;
+            case 'h':
+                host_ = std::string(optarg);
+                break;
+            case 'p':
+                port_ = std::atoi(optarg);
+                break;
+            case 't':
+                thread_pool_size_ = std::atoi(optarg);
+                break;
+			case 'l':
+				lg::Logger::instance().level(optarg);
+				break;
+            default:
+				return false;
+        }
+    }
+
+    return true;
 }
 
 void Config::usage(const char * prog_name) const
 {
-    std::cerr << "usage: " << prog_name << " --config <config_file>" << std::endl;
+    std::cerr
+        << "usage: " << prog_name << " [options]" << std::endl
+        << "options are:" << std::endl
+        << "              -h <host>     (default " << DEFAULT_BIND_HOST << ")" << std::endl
+        << "              -p <port>     (default " << DEFAULT_BIND_PORT << ")" << std::endl
+        << "              -t <#threads> (default " << DEFAULT_THREAD_POOL_SIZE << ")" << std::endl
+        << "              -l <loglevel> (default " << DEFAULT_LOG_LEVEL_STR << ")" << std::endl;
 }

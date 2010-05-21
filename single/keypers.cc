@@ -35,12 +35,7 @@ int main(int argc, char** argv) try
 		return ERROR_PROCESSING_COMMAND_LINE;
     }
 
-    if (not config.load_config())
-    {
-		return ERROR_LOADING_CONFG_FILE;
-    }
-
-    l(lg::info, "will bing at: %s:%d [%d threads]", config.host().c_str(), config.port(), config.thread_pool_size());
+    l(lg::debug, "will bing at: %s:%d [%d threads]", config.host().c_str(), config.port(), config.thread_pool_size());
 
 	shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
 	shared_ptr<KeyperHandler> handler(new KeyperHandler());

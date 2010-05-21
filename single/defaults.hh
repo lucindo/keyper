@@ -6,11 +6,11 @@
 #ifndef DEFAULTS_HH
 #define DEFAULTS_HH
 
-#define BIND_HOST "localhost"
-#define BIND_PORT 4242
-#define THREAD_POOL_SIZE 10
-
+#define DEFAULT_BIND_HOST "localhost"
+#define DEFAULT_BIND_PORT 4242
+#define DEFAULT_THREAD_POOL_SIZE 10
 #define DEFAULT_LOG_LEVEL info
+#define DEFAULT_LOG_LEVEL_STR "info"
 
 // from ACE:
 #define UNUSED_ARG(a) do {/* null */} while (&a == 0)
