@@ -66,6 +66,9 @@ service Keyper extends server.Server
 	// return the number of itens queued
 	i64 qsize(1:string name),
 
+	// verify if a queue exists
+	bool qexists(1:string name),
+
 	// delete the queue
 	void qempty(1:string name),
 
@@ -79,6 +82,9 @@ service Keyper extends server.Server
 
 	// decrements the counter and returns its new value
 	i64 cdecr(1:string name, 2:i64 delta),
+
+	// verify if a counter exists
+	bool cexists(1:string name),
 
 	// removes the counter
 	void cremove(1:string name)

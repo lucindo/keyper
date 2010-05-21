@@ -10,6 +10,7 @@ add_executable(keypers
   log.cc
   storage.cc
   handler.cc
+  counter.cc
 
   config.hh
   defaults.hh
@@ -17,7 +18,8 @@ add_executable(keypers
   log.hh
   storage.hh
   handler.hh
-
+  counter.hh
+  
   ../thrift/gen-cpp/Keyper.cpp
   ../thrift/gen-cpp/Server.cpp
   

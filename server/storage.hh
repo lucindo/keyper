@@ -37,6 +37,14 @@ public:
     void put(const std::string& key, const std::string& data);
 
     void get(const std::string& key, std::string& data);
+
+	uint64_t size();
+
+	bool exists(const std::string& key);
+
+	void remove(const std::string& key);
+
+	void rename(const std::string& oldkey, const std::string& newkey);
 };
 
 #endif // STORAGE_HH

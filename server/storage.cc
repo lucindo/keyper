@@ -45,10 +45,49 @@ void KVStore::put(const std::string& key, const std::string& data)
 
 void KVStore::get(const std::string& key, std::string& data)
 {
+	// TODO: use a smart pointer
 	std::string* value = db_.get(key);
 	if (value)
 	{
 		data = *value;
+		delete value;
 	}
 }
 
+uint64_t KVStore::size()
+{
+	return db_.count();
+}
+
+bool KVStore::exists(const std::string& key)
+{
+	// TODO: use a smart pointer
+	std::string* value = db_.get(key);
+	bool found = false;
+	if (value)
+	{
+		found = true;
+		delete value;
+	}
+
+	return found;
+}
+
+void KVStore::remove(const std::string& key)
+{
+	db_.remove(key);
+}
+
+void KVStore::rename(const std::string& oldkey, const std::string& newkey)
+{
+	// TODO: make a transaction class (scoped) and use a smart_ptr
+	db_.begin_transaction(true);
+	std::string* value = db_.get(oldkey);
+	if (value)
+	{
+		db_.set(newkey, *value);
+		delete value;
+	}
+	db_.remove(oldkey);
+	db_.end_transaction(true);
+}

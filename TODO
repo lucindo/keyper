@@ -1,9 +1,11 @@
 
 * general
    * use references to avoid copies
+   * implement queues
 
 * protocol
-   * add keyspaces (namespaces) 
+   * add exceptions
+   * add keyspaces (namespaces)
    * [?] multiple commands
    * [?] publish/subscribe protocol http://en.wikipedia.org/wiki/Publish/subscribe
 

@@ -10,6 +10,7 @@
 #include "log.hh"
 #include "handler.hh"
 #include "storage.hh"
+#include "counter.hh"
 
 #include <concurrency/ThreadManager.h>
 #include <concurrency/PosixThreadFactory.h>
@@ -46,6 +47,12 @@ int main(int argc, char** argv) try
 		return ERROR_OPENNING_DATABASE;
 	}
 
+	if (not Counter::instance().init(config.data_dir()))
+	{
+		l(lg::critical, "error opening counter, aborting.");
+		return ERROR_OPENNING_DATABASE;
+	}
+
 	shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
 	shared_ptr<KeyperHandler> handler(new KeyperHandler());
 	shared_ptr<TProcessor> processor(new KeyperProcessor(handler));
@@ -68,6 +75,8 @@ int main(int argc, char** argv) try
 	server.serve();
 
 	KVStore::instance().fini();
+
+	Counter::instance().fini();
 
 	l(lg::info, "exiting");
 

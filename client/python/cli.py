@@ -38,9 +38,35 @@ def main():
         print "get(key) = %s " % klient.get("key")
 
         klient.put("key", "value")
-        print "put()"
+        print "put(key, value)"
 
         print "get(key) = %s " % klient.get("key")
+
+        print "# keys = %d " % klient.size()
+
+        print "exists a_chave = %s" % klient.exists("a_chave")
+
+        klient.put("a_chave", "o_valor")
+        print "put(a_chave, o_valor)"
+        
+        print "exists a_chave = %s" % klient.exists("a_chave")
+
+        klient.remove("a_chave")
+        print "remove(a_chave)"
+
+        print "exists a_chave = %s" % klient.exists("a_chave")
+
+        klient.put("chave1", "42")
+        print "put(chave1, 42)"
+
+        klient.rename("chave1", "xuxu")
+        print "rename(chave1, xuxu)"
+        
+        print "exists chave1 = %s" % klient.exists("chave1")
+
+        print "exists xuxu = %s" % klient.exists("xuxu")
+
+        print "get(xuxu) = %s " % klient.get("xuxu")
 
     except Exception, ex:
         print '%s' % str(ex)
