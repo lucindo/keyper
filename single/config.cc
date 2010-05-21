@@ -13,7 +13,10 @@
 #include <cstdlib>
 
 Config::Config()
-    : host_(DEFAULT_BIND_HOST), port_(DEFAULT_BIND_PORT), thread_pool_size_(DEFAULT_THREAD_POOL_SIZE)
+    : host_(DEFAULT_BIND_HOST),
+	  port_(DEFAULT_BIND_PORT),
+	  thread_pool_size_(DEFAULT_THREAD_POOL_SIZE),
+	  data_dir_(DEFAULT_DATA_DIR)
 {
 }
 
@@ -36,11 +39,16 @@ uint32_t Config::thread_pool_size() const
     return thread_pool_size_;
 }
 
+std::string Config::data_dir() const
+{
+	return data_dir_;
+}
+
 bool Config::command_line(int argc, char **argv)
 {
     int opt;
 
-    while ((opt = getopt(argc, argv, "h:p:t:l:")) != -1)
+    while ((opt = getopt(argc, argv, "h:p:t:l:d:")) != -1)
     {
         switch (opt) 
 		{
@@ -55,6 +63,10 @@ bool Config::command_line(int argc, char **argv)
                 break;
 			case 'l':
 				lg::Logger::instance().level(optarg);
+				break;
+			case 'd':
+				data_dir_ = std::string(optarg);
+				if (data_dir_[data_dir_.size() - 1] != '/') data_dir_ += "/";
 				break;
             default:
 				return false;
@@ -72,5 +84,6 @@ void Config::usage(const char * prog_name) const
         << "              -h <host>     (default " << DEFAULT_BIND_HOST << ")" << std::endl
         << "              -p <port>     (default " << DEFAULT_BIND_PORT << ")" << std::endl
         << "              -t <#threads> (default " << DEFAULT_THREAD_POOL_SIZE << ")" << std::endl
+        << "              -d <data dir> (default " << DEFAULT_DATA_DIR << ")" << std::endl
         << "              -l <loglevel> (default " << DEFAULT_LOG_LEVEL_STR << ")" << std::endl;
 }
