@@ -32,57 +32,57 @@ using namespace keyper;
 int main(int argc, char** argv) try
 {
     Config config;
-    
+
     if (not config.command_line(argc, argv))
     {
-		config.usage(argv[0]);
-		return ERROR_PROCESSING_COMMAND_LINE;
+        config.usage(argv[0]);
+        return ERROR_PROCESSING_COMMAND_LINE;
     }
 
     l(lg::debug, "will bing at: %s:%d [%d threads] [data dir %s]", config.host().c_str(), config.port(), config.thread_pool_size(), config.data_dir().c_str());
 
-	if (not KVStore::instance().init(config.data_dir()))
-	{
-		l(lg::critical, "error opening database, aborting.");
-		return ERROR_OPENNING_DATABASE;
-	}
+    if (not KVStore::instance().init(config.data_dir()))
+    {
+        l(lg::critical, "error opening database, aborting.");
+        return ERROR_OPENNING_DATABASE;
+    }
 
-	if (not Counter::instance().init(config.data_dir()))
-	{
-		l(lg::critical, "error opening counter, aborting.");
-		return ERROR_OPENNING_DATABASE;
-	}
+    if (not Counter::instance().init(config.data_dir()))
+    {
+        l(lg::critical, "error opening counter, aborting.");
+        return ERROR_OPENNING_DATABASE;
+    }
 
-	shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
-	shared_ptr<KeyperHandler> handler(new KeyperHandler());
-	shared_ptr<TProcessor> processor(new KeyperProcessor(handler));
-	shared_ptr<TServerTransport> serverTransport(new TServerSocket(config.port()));
-	shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
+    shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
+    shared_ptr<KeyperHandler> handler(new KeyperHandler());
+    shared_ptr<TProcessor> processor(new KeyperProcessor(handler));
+    shared_ptr<TServerTransport> serverTransport(new TServerSocket(config.port()));
+    shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
 
-	shared_ptr<ThreadManager> threadManager = ThreadManager::newSimpleThreadManager(config.thread_pool_size());
-	shared_ptr<PosixThreadFactory> threadFactory = shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
-	threadManager->threadFactory(threadFactory);
-	threadManager->start();
+    shared_ptr<ThreadManager> threadManager = ThreadManager::newSimpleThreadManager(config.thread_pool_size());
+    shared_ptr<PosixThreadFactory> threadFactory = shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
+    threadManager->threadFactory(threadFactory);
+    threadManager->start();
 
-	TThreadPoolServer server(processor,
-							 serverTransport,
-							 transportFactory,
-							 protocolFactory,
-							 threadManager);
+    TThreadPoolServer server(processor,
+                             serverTransport,
+                             transportFactory,
+                             protocolFactory,
+                             threadManager);
 
-	l(lg::info, "starting the server");
+    l(lg::info, "starting the server");
 
-	server.serve();
+    server.serve();
 
-	KVStore::instance().fini();
+    KVStore::instance().fini();
 
-	Counter::instance().fini();
+    Counter::instance().fini();
 
-	l(lg::info, "exiting");
+    l(lg::info, "exiting");
 
     return 0;
 }
 catch (std::exception& ex)
 {
-	l(lg::error, "exception in main thread: %s", ex.what());
+    l(lg::error, "exception in main thread: %s", ex.what());
 }

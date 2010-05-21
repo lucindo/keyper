@@ -9,6 +9,6 @@ service Server
 {
     void ping(),
 
-	string version()
+    string version()
 }
 

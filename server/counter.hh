@@ -14,35 +14,35 @@ using namespace kyotocabinet;
 class Counter
 {
 private:
-	static Counter instance_;
-	Counter()
-	{
-	}
-	~Counter()
-	{
-	}
+    static Counter instance_;
+    Counter()
+    {
+    }
+    ~Counter()
+    {
+    }
 
-	Counter(const Counter&);
-	Counter & operator=(const Counter&);
+    Counter(const Counter&);
+    Counter & operator=(const Counter&);
 
-	HashDB db_;
+    HashDB db_;
 
 public:
-	static Counter &instance();
-    
+    static Counter &instance();
 
-	bool init(std::string data_dir);
-	void fini();
 
-	int64_t update(const std::string& name, int64_t delta);
+    bool init(std::string data_dir);
+    void fini();
 
-	int64_t get(const std::string& name);
+    int64_t update(const std::string& name, int64_t delta);
 
-	uint64_t size();
+    int64_t get(const std::string& name);
 
-	bool exists(const std::string& name);
+    uint64_t size();
 
-	void remove(const std::string& name);
+    bool exists(const std::string& name);
+
+    void remove(const std::string& name);
 };
 
 #endif // Counter_HH

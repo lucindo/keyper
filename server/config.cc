@@ -14,9 +14,9 @@
 
 Config::Config()
     : host_(DEFAULT_BIND_HOST),
-	  port_(DEFAULT_BIND_PORT),
-	  thread_pool_size_(DEFAULT_THREAD_POOL_SIZE),
-	  data_dir_(DEFAULT_DATA_DIR)
+      port_(DEFAULT_BIND_PORT),
+      thread_pool_size_(DEFAULT_THREAD_POOL_SIZE),
+      data_dir_(DEFAULT_DATA_DIR)
 {
 }
 
@@ -41,7 +41,7 @@ uint32_t Config::thread_pool_size() const
 
 std::string Config::data_dir() const
 {
-	return data_dir_;
+    return data_dir_;
 }
 
 bool Config::command_line(int argc, char **argv)
@@ -50,8 +50,8 @@ bool Config::command_line(int argc, char **argv)
 
     while ((opt = getopt(argc, argv, "h:p:t:l:d:")) != -1)
     {
-        switch (opt) 
-		{
+        switch (opt)
+        {
             case 'h':
                 host_ = std::string(optarg);
                 break;
@@ -61,15 +61,15 @@ bool Config::command_line(int argc, char **argv)
             case 't':
                 thread_pool_size_ = std::atoi(optarg);
                 break;
-			case 'l':
-				lg::Logger::instance().level(optarg);
-				break;
-			case 'd':
-				data_dir_ = std::string(optarg);
-				if (data_dir_[data_dir_.size() - 1] != '/') data_dir_ += "/";
-				break;
+            case 'l':
+                lg::Logger::instance().level(optarg);
+                break;
+            case 'd':
+                data_dir_ = std::string(optarg);
+                if (data_dir_[data_dir_.size() - 1] != '/') data_dir_ += "/";
+                break;
             default:
-				return false;
+                return false;
         }
     }
 

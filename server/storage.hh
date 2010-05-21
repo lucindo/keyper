@@ -15,42 +15,42 @@ using namespace kyotocabinet;
 class KVStore
 {
 private:
-	static KVStore instance_;
-	KVStore() : index_(NULL)
-	{
-	}
-	~KVStore()
-	{
-	}
+    static KVStore instance_;
+    KVStore() : index_(NULL)
+    {
+    }
+    ~KVStore()
+    {
+    }
 
-	KVStore(const KVStore&);
-	KVStore & operator=(const KVStore&);
+    KVStore(const KVStore&);
+    KVStore & operator=(const KVStore&);
 
-	HashDB db_;
-	Xapian::WritableDatabase * index_;
+    HashDB db_;
+    Xapian::WritableDatabase * index_;
 
 public:
-	static KVStore &instance();
-    
+    static KVStore &instance();
 
-	bool init(std::string data_dir);
-	void fini();
+
+    bool init(std::string data_dir);
+    void fini();
 
     void put(const std::string& key, const std::string& data);
 
     void get(const std::string& key, std::string& data);
 
-	uint64_t size();
+    uint64_t size();
 
-	bool exists(const std::string& key);
+    bool exists(const std::string& key);
 
-	void remove(const std::string& key);
+    void remove(const std::string& key);
 
-	void rename(const std::string& oldkey, const std::string& newkey);
+    void rename(const std::string& oldkey, const std::string& newkey);
 
-	void search(const std::string& pattern, std::vector<std::string>& result);
+    void search(const std::string& pattern, std::vector<std::string>& result);
 
-	void keys(const std::string& pattern, std::vector<std::string>& result);
+    void keys(const std::string& pattern, std::vector<std::string>& result);
 };
 
 #endif // STORAGE_HH

@@ -13,9 +13,9 @@ class Config
 {
 private:
     std::string host_;
-	uint32_t port_;
-	uint32_t thread_pool_size_;
-	std::string data_dir_;
+    uint32_t port_;
+    uint32_t thread_pool_size_;
+    std::string data_dir_;
 
 public:
     Config();
@@ -28,9 +28,9 @@ public:
     // getters
 
     std::string host() const;
-	uint32_t port() const;
-	uint32_t thread_pool_size() const;
-	std::string data_dir() const;
+    uint32_t port() const;
+    uint32_t thread_pool_size() const;
+    std::string data_dir() const;
 };
 
 #endif // CONFIG_HH

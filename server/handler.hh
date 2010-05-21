@@ -33,20 +33,20 @@ namespace keyper
         void keys(std::vector<std::string> & _return, const std::string& pattern);
         void search(std::vector<std::string> & _return, const std::string& pattern);
 
-		// queue
-		void qput(const std::string& name, const std::string& data);
-		void qpeek(std::string& _return, const std::string& name);
-		void qpop(std::string& _return, const std::string& name);
-		int64_t qsize(const std::string& name);
-		bool qexists(const std::string& name);
-		void qempty(const std::string& name);
+        // queue
+        void qput(const std::string& name, const std::string& data);
+        void qpeek(std::string& _return, const std::string& name);
+        void qpop(std::string& _return, const std::string& name);
+        int64_t qsize(const std::string& name);
+        bool qexists(const std::string& name);
+        void qempty(const std::string& name);
 
-		// counter
-		int64_t cincr(const std::string& name, const int64_t delta);
-		int64_t cget(const std::string& name);
-		int64_t cdecr(const std::string& name, const int64_t delta);
-		bool cexists(const std::string& name);
-		void cremove(const std::string& name);
+        // counter
+        int64_t cincr(const std::string& name, const int64_t delta);
+        int64_t cget(const std::string& name);
+        int64_t cdecr(const std::string& name, const int64_t delta);
+        bool cexists(const std::string& name);
+        void cremove(const std::string& name);
     };
 
 }
