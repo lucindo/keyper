@@ -70,15 +70,13 @@ def main():
 
         print "counter exists? %s" % klient.cexists("counter")
 
-        klient.cincr("counter", 1)
-        print "cincr(counter, 1)"
+        print "cincr(counter, 1) = %d " % klient.cincr("counter", 1)
 
         print "counter exists? %s" % klient.cexists("counter")
 
         print "counter %d" % klient.cget("counter")
 
-        klient.cdecr("counter", 1)
-        print "cdecr(counter, 1)"
+        print "cdecr(counter, 1) = %d" % klient.cdecr("counter", 1)
 
         print "counter %d" % klient.cget("counter")
 

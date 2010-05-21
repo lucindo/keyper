@@ -18,3 +18,9 @@ class Client(Keyper.Client):
         protocol = TBinaryProtocol.TBinaryProtocol(transport)
         Keyper.Client.__init__(self, protocol)
         transport.open()
+
+    def cincr(self, name, delta = 1):
+        return Keyper.Client.cincr(self, name, delta)
+
+    def cdecr(self, name, delta = 1):
+        return Keyper.Client.cdecr(self, name, delta)

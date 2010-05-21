@@ -57,7 +57,7 @@ int64_t Counter::update(const std::string& name, int64_t delta)
 {
 	// TODO: use a smart pointer
 	std::string* value = db_.get(name);
-	int64_t data = 0;
+	int64_t data = 0, newvalue = 0;
 	if (value)
 	{
 		data = stream_cast<int64_t>(*value);
@@ -65,12 +65,16 @@ int64_t Counter::update(const std::string& name, int64_t delta)
 		
 		data += delta;
 
-		db_.set(name, stream_cast<std::string>(data));
+		newvalue = data;
 	}
 	else
 	{
-		db_.set(name, stream_cast<std::string>(delta));
+		newvalue = delta;
 	}
+
+	db_.set(name, stream_cast<std::string>(newvalue));
+
+	return newvalue;
 }
 
 int64_t Counter::get(const std::string& name)
