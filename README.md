@@ -33,6 +33,8 @@ Or these steps:
 * build clients stubs, thrift directory:
         thrift -r --gen py keyper.thrift # python
 
+Small python example: [cly.py] [https://github.com/lucindo/keyper/blob/master/client/python/cli.py]
+
 Features
 --------
 
