@@ -1,38 +1,11 @@
 
-* key-value store protocol
-   * set(key, value): set a value for key
-   * get(key): get value from key
-   * getset(key, value): set a value for key and return the old value
-   * exists(key): check if a given key exists
-   * delete(key): removes a key
-   * rename(oldkey, newkey): rename the oldkey to the newkey
-   * keys(pattern): return all keys matching pattern
-   * size(): return the number of keys on db
-   * [?] multiple commands: same as above for multiple keys
-   * [?] randomkey(): return a random key
+* general
+   * use references to avoid copies
 
-* queue protocol
-   * peek(name): return the first element (but not remove)
-   * pop(name): return and removes the first element
-   * put(name, value): put a value on queue
-   * size(name): return the number of itens queued
-   * delete(name): removes a queue from system
-   * create(name): creates a queue
-   * [?] publish/subscribe protocol? http://en.wikipedia.org/wiki/Publish/subscribe
-
-* conter protocol
-   * get(name): return the counter value
-   * incr(name, delta): increments counter by delta (default 1)
-   * decr(name, delta): decrements counter by delta (default 1)
-   * delete(name): removes a counter from system
-   * create(name): creates a counter
-
-* key-value, queue, counter
-   * multi(): returns and multiple command UUID (transactional)
-   * multi_add(uuid, command, params): enqueue command for execution
-   * multi_exec(uuid): returns a list of values from execution of all
-   commands (executed in one transaction)
-   * multi_discard(uuid): discard execution of commands
+* protocol
+   * add keyspaces (namespaces) 
+   * [?] multiple commands
+   * [?] publish/subscribe protocol http://en.wikipedia.org/wiki/Publish/subscribe
 
 * monitoring
    * stats: system statistics
