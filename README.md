@@ -66,8 +66,13 @@ Implement as a distributed system with the following features:
 Copyright and License
 ---------------------
 
+> I don't like licenses, because I don't like having to worry about all this
+> legal stuff just for a simple piece of software I don't really mind anyone
+> using. But I also believe that it's important that people share and give back;
+> so I'm placing this work under the following license.
+> 
+> 
 > [BOLA - Buena Onda License Agreement (v1.1)] [6]
-> ------------------------------------------
 > 
 > This work is provided 'as-is', without any express or implied warranty. In no
 > event will the authors be held liable for any damages arising from the use of
